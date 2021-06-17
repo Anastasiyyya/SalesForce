@@ -16,10 +16,20 @@ public class AccountPage extends BasePage{
         super();
     }
 
+    /**
+     * Gets name of the website
+     * @param name
+     * @return website name
+     */
     public String getExistWebsiteName(String name){
         return driver.findElement(By.xpath(String.format(WEBSITE_FAX_XPATH, name))).getText();
     }
 
+    /**
+     * Gets type, industry, description
+     * @param name
+     * @return names of the parameters
+     */
     public String getExistTypeIndustryDescription(String name){
         return driver.findElement(By.xpath(String.format(TYPE_INDUSTRY_DESCRIPTION_XPATH, name))).getText();
     }

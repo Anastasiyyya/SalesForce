@@ -22,12 +22,6 @@ public class Account {
     public Account() {
     }
 
-    public Account(String accountName, String phone, String type) {
-        this.accountName = accountName;
-        this.phone = phone;
-        this.type = type;
-    }
-
     public String getAccountName() {
         return accountName;
     }

@@ -6,6 +6,9 @@ import org.testng.annotations.Test;
 
 public class AccountTest extends BaseTest {
 
+    /**
+     * This test checks the compliance of the entered data with the data displayed on the site.
+     */
     @Test
     public void createAccountTest() {
         Account account1 = new Account();

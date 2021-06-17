@@ -17,6 +17,11 @@ public class Input {
         this.label = label;
     }
 
+    /**
+     * Write text.
+     *
+     * @param text the text
+     */
     public void writeTextInput(String text) {
         driver.findElement(By.xpath(String.format(ACCOUNT_INPUT_XPATH,label))).sendKeys(text);
     }

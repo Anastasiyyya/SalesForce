@@ -5,10 +5,11 @@ import elements.Input;
 import objects.Contact;
 import org.openqa.selenium.WebDriver;
 import elements.DropDown;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+
 
 public class NewContactModalPage extends BasePage {
+
+    public static final String SAVE_BUTTON_XPATH_ON_NEW_CONTACT_MODAL = "//button[@name ='SaveEdit']";
 
     public NewContactModalPage(WebDriver driver) {
         super(driver);
@@ -19,15 +20,20 @@ public class NewContactModalPage extends BasePage {
         return this;
     }
 
-    @FindBy(xpath = "//button[@name ='SaveEdit']")
-    WebElement accountNameFilledUp;
-
-    public NewContactModalPage waitForPageLoaded() {
-        waitForElementLocated(accountNameFilledUp, 30);
-        return this;
+    /**
+     * This method waits for the page to load.
+     * @param driver
+     */
+    public void waitForPageLoading(WebDriver driver) {
+        waitForPageLoad(driver);
     }
 
-    public void createNewContact(Contact contact){
+    /**
+     * This method creates new Contact.We use "Thread.sleep" because the browser close window appears
+     * and interrupts the test execution
+     * @param contact
+     */
+    public void createNewContact(Contact contact) {
         new Input(driver, "First Name").writeTextInContactsField(contact.getFirstName());
         new Input(driver, "Last Name").writeTextInContactsField(contact.getLastName());
         new Input(driver, "Phone").writeTextInContactsField(contact.getPhone());
@@ -36,6 +42,11 @@ public class NewContactModalPage extends BasePage {
         new DropDown(driver, "Salutation").contactSelectOption(contact.getSalutation());
         new DropDown(driver, "Account Name").contactSelectAccount("account 1");
         new Buttons(driver).clickSaveButton(SAVE_BUTTON_XPATH_ON_NEW_CONTACT_MODAL);
-        //waitForPageLoaded();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        waitForPageLoading(driver);
     }
 }

@@ -1,8 +1,13 @@
 import objects.Contact;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ContactTest extends BaseTest {
+
+    /**
+     * This test checks the compliance of the entered data with the data displayed on the site.
+     */
     @Test
     public void createContactTest() {
         Contact contact1 = new Contact();
@@ -22,7 +27,7 @@ public class ContactTest extends BaseTest {
                 .createNewContact(contact1);
         contactListPage
                 .openPage(CONTACTS_LIST_URL);
-        //Assert.assertEquals(contactListPage.getExistPhoneNumber("37517"),"37517");
-        //Assert.assertEquals(contactListPage.getExistContactName("1", "2"),"1 2");
+        Assert.assertEquals(contactListPage.getExistPhoneNumber("37517"),"37517");
+        Assert.assertEquals(contactListPage.getExistContactName("1", "2"),"1 2");
     }
 }

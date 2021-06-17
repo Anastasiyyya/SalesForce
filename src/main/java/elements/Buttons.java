@@ -12,6 +12,9 @@ public class Buttons extends BasePage {
         this.driver = driver;
     }
 
+    /**
+     * This method clicks on any button
+     */
     public void clickSaveButton(String button) {
         driver.findElement(By.xpath(String.format(button))).click();
     }

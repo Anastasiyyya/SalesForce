@@ -22,6 +22,11 @@ public class LoginPage extends BasePage{
         return this;
     }
 
+    /**
+     * This method performs authorization on the site
+     * @param username
+     * @param password
+     */
     public void login(String username, String password) {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);

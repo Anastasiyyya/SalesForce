@@ -1,18 +1,15 @@
 package pages;
 
 import constants.IConstants;
-import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 
 public class BasePage implements IConstants {
 
     WebDriver driver;
-    WebDriverWait wait;
 
     public BasePage(){
     }
@@ -22,8 +19,8 @@ public class BasePage implements IConstants {
         PageFactory.initElements(driver,this);
     }
 
-    public void waitForElementLocated(WebElement element, int timeout) {
-        wait = new WebDriverWait(driver, timeout);
-        wait.until(ExpectedConditions.visibilityOf(element));
+    public void waitForPageLoad(WebDriver driver) {
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
     }
 }
